@@ -6,7 +6,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 abstract class WebSocketService {
   Stream<dynamic> get stream;
-  Future<void> connect(String url);
+  Future<void> connect({String url = ''});
   void sendMessage(dynamic message);
   bool isConnected();
   void close();
@@ -28,7 +28,7 @@ class WebSocketServiceImpl implements WebSocketService {
   Stream<dynamic> get stream => _stream;
 
   @override
-  Future<void> connect(String url) async {
+  Future<void> connect({String url = ''}) async {
 
     _channel = IOWebSocketChannel.connect(url);
     _channel.stream.listen((message) {

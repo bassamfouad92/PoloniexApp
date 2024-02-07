@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:poloniex_app/shared/utils/shared_preference.dart';
 import 'package:poloniex_app/trading/presentation/trade_highlight_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await PreferenceUtils.init();
   runApp(
     const ProviderScope(
       child: MyApp(),

@@ -21,14 +21,13 @@ class StockWebSocketConnectionFallBack implements WebSocketService {
   }
 
   @override
-  Future<void> connect(String url) async {
+  Future<void> connect({String url = ''}) async {
     if(!webSocketService.isConnected()) {
-      final result = await networkService.post('/bullet-public', data: connectionRequest.getRequestParams());
+      final result = await networkService.post(
+          '/bullet-public', data: connectionRequest.getRequestParams());
       await _saveTokenToMemory(result.data['data']['token']);
-      webSocketService.connect('${AppConfigs.socketBaseUrl}?token=${result.data['data']['token']}&acceptUserMessage=true');
-    } else {
-      webSocketService.connect('${AppConfigs.socketBaseUrl}?token=${getTokenFromMemory()}&acceptUserMessage=true');
     }
+    webSocketService.connect(url: '${AppConfigs.socketBaseUrl}?token=${getTokenFromMemory()}&acceptUserMessage=true');
   }
 
   @override

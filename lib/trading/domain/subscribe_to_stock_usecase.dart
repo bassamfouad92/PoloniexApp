@@ -34,7 +34,6 @@ class SubscribeToStockMarketUseCase extends UseCase<dynamic, List<Map<String, dy
       });
       yield* domainModel.asyncExpand((event) => event);
     } catch (ex) {
-      print('An error occurred: $ex');
       rethrow;
     }
   }

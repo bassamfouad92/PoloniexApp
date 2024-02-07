@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:poloniex_app/trading/presentation/providers/trading_state.dart';
 

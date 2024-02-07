@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poloniex_app/shared/base/base_usecase.dart';
 import 'package:poloniex_app/shared/base/connection_request.dart';
@@ -18,7 +17,7 @@ final networkServiceProvider = Provider<NetworkService>((ref) {
 final webSocketServiceProvider = Provider<WebSocketService>((ref) {
   final networkService = ref.watch(networkServiceProvider);
   final webSocketService = StockWebSocketConnectionFallBack(WebSocketServiceImpl(), networkService, StockConnectionRequest());
-        webSocketService.connect('');
+  webSocketService.connect();
   return webSocketService;
 });
 

@@ -16,12 +16,8 @@ class TradeHighlightScreen extends ConsumerStatefulWidget {
 }
 
 class _TradeHighlightScreenState extends ConsumerState<TradeHighlightScreen> {
-  final TextEditingController textEditingController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   void dispose() {
@@ -45,7 +41,7 @@ class _TradeHighlightScreenState extends ConsumerState<TradeHighlightScreen> {
         ),
         body: RefreshIndicator(onRefresh: () {
            return Future.delayed(const Duration(seconds: 1), () {
-              ref.read(webSocketServiceProvider).connect('');
+              ref.read(webSocketServiceProvider).connect();
            });
         }, child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
@@ -110,9 +106,10 @@ class _TradeHighlightScreenState extends ConsumerState<TradeHighlightScreen> {
                       ))),
         )),
         bottomNavigationBar:
-        const SizedBox(
+         Container(
           height: 40,
-          child: Center(child: Text('Made with ❤️ by Bassam Fouad')),
+          padding: const EdgeInsets.only(bottom: 20),
+          child: const Center(child: Text('Made with ❤️ by Bassam Fouad')),
         )
     );
   }
