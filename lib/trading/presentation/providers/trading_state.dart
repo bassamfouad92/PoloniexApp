@@ -23,7 +23,7 @@ class TradingState {
     this.stockItems = const [],
     this.stockPrice = 0.0,
     this.state = TradingConcreteState.initial,
-    this.priceStatus = ArrowType.red,
+    this.priceStatus = ArrowType.green,
   });
 
 
@@ -31,7 +31,7 @@ class TradingState {
     this.stockItems = const [],
     this.stockPrice = 0.0,
     this.state = TradingConcreteState.loading,
-    this.priceStatus = ArrowType.red,
+    this.priceStatus = ArrowType.green,
   });
 
   TradingState copyWith({
@@ -44,7 +44,7 @@ class TradingState {
   }) {
     return TradingState(
       stockItems: stockItems ?? this.stockItems,
-      stockPrice: price ?? this.stockPrice,
+      stockPrice: price ?? stockPrice,
       state: state ?? this.state,
       priceStatus: priceStatus ?? this.priceStatus
     );

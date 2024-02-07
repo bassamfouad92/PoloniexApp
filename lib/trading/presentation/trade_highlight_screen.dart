@@ -17,7 +17,7 @@ class TradeHighlightScreen extends ConsumerStatefulWidget {
 
 class _TradeHighlightScreenState extends ConsumerState<TradeHighlightScreen> {
 
-  final TextEditingController textEditingController = TextEditingController();
+  final TextEditingController textEditingController = TextEditingController(text: '0');
 
   @override
   void dispose() {
