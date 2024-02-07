@@ -50,7 +50,7 @@ final tradingRepositoryProvider = Provider<TradingRepository>((ref) {
   final repository = TradingRemoteRepository(socketService);
   return repository;
 });
-
+```
 ## Additional Features
 
 - **Retry Mechanism**: The app includes an  retry mechanism for connecting to the WebSocket service. In case of a connection failure/service stopped, Pull to refresh it like [ Pull to refresh image sample](https://i.stack.imgur.com/tlx4d.gif) 
