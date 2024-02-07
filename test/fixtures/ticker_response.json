@@ -1,0 +1,18 @@
+{
+  "data":{
+    "symbol":"BTCUSDTPERP",
+    "sequence":1706066179116,
+    "side":"sell",
+    "size":1,
+    "price":42987.0,
+    "bestBidSize":232,
+    "bestBidPrice":"42967.8",
+    "bestAskPrice":"43005.5",
+    "tradeId":"65c33e085ac29600010cb07d",
+    "ts":1707294216397969815,
+    "bestAskSize":232
+  },
+  "subject":"ticker",
+  "topic":"/contractMarket/ticker:BTCUSDTPERP",
+  "type":"message"
+}

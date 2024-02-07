@@ -1,0 +1,1 @@
+enum ConnectionType { welcome, subscribe, ack, message, error }
