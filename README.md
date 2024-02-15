@@ -29,7 +29,7 @@ The trading module comprises three main layers:
    - Includes the `TradingRepository`, responsible for fetching data from the WebSocket service.
 
 2. **Domain Layer**:
-   - Consists of the `SubscribeToStockMarketUseCase`, responsible for observing changes and mapping data models to domain models.
+   - Consists of the `SubscribeToMarketUseCase`, responsible for observing changes and mapping data models to domain models.
 
 3. **Presentation Layer**:
    - Features the `TradingNotifier`, which observes changes from the use case, generates UI states, and maps them to UI data.
