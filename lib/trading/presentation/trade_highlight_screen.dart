@@ -50,7 +50,7 @@ class _TradeHighlightScreenState extends ConsumerState<TradeHighlightScreen> {
               child: tradingState.when(
                   data: (state) => Column(
                         children: [
-                          const Text('Enter price to observe stack market',
+                          const Text('Enter price to observe the crypto market',
                               style: TextStyle(color: Colors.purpleAccent)),
                           gap(10),
                           /// price field
@@ -65,7 +65,7 @@ class _TradeHighlightScreenState extends ConsumerState<TradeHighlightScreen> {
                                 ref.read(tradingNotifierProvider.notifier).updatePrice(newPrice);
                               })),
                               const SizedBox(width: 10),
-                              state.priceStatus.getIcon()
+                              state.rateStatus.getIcon()
                             ],
                           ),
                           gap(10),
@@ -76,19 +76,19 @@ class _TradeHighlightScreenState extends ConsumerState<TradeHighlightScreen> {
                                   primaryXAxis: const CategoryAxis(),
                                   // Chart title
                                   title: const ChartTitle(
-                                      text: 'Stock Market Buying Today'),
+                                      text: 'Bitcoin Buying Today'),
                                   // Enable legend
                                   legend: const Legend(isVisible: true),
                                   // Enable tooltip
                                   tooltipBehavior:
                                       TooltipBehavior(enable: true),
-                                  series: <CartesianSeries<Stock, double>>[
-                                    LineSeries<Stock, double>(
+                                  series: <CartesianSeries<BTC, double>>[
+                                    LineSeries<BTC, double>(
                                         color: Colors.red,
-                                        dataSource: state.stockItems,
-                                        xValueMapper: (Stock stock, _) =>
+                                        dataSource: state.availableBTCs,
+                                        xValueMapper: (BTC stock, _) =>
                                             stock.size,
-                                        yValueMapper: (Stock stock, _) =>
+                                        yValueMapper: (BTC stock, _) =>
                                             stock.price,
                                         name: 'Buy',
                                         dataLabelSettings:

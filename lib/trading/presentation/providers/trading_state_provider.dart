@@ -12,7 +12,7 @@ final tradingNotifierProvider = StateNotifierProvider<TradingNotifier, TradingSt
   socketService.stream.listen((message) {
     final messageType = jsonDecode(message);
     if (messageType['type'] == 'welcome') {
-       tradingNotifier.connectToStockMarket();
+       tradingNotifier.connectToCryptoMarket();
     }
   });
   return tradingNotifier;

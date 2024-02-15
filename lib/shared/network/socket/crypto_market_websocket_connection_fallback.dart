@@ -5,7 +5,7 @@ import 'package:poloniex_app/shared/utils/shared_preference.dart';
 
 import '../../base/connection_request.dart';
 
-class StockWebSocketConnectionFallBack implements WebSocketService {
+class CryptoMarketWebSocketConnectionFallBack implements WebSocketService {
 
   final WebSocketService webSocketService;
   final NetworkService networkService;
@@ -13,7 +13,7 @@ class StockWebSocketConnectionFallBack implements WebSocketService {
 
   static const _TOKEN_KEY = 'token';
 
-  StockWebSocketConnectionFallBack(this.webSocketService, this.networkService, this.connectionRequest);
+  CryptoMarketWebSocketConnectionFallBack(this.webSocketService, this.networkService, this.connectionRequest);
 
   @override
   void close() {
@@ -23,11 +23,15 @@ class StockWebSocketConnectionFallBack implements WebSocketService {
   @override
   Future<void> connect({String url = ''}) async {
     if(!webSocketService.isConnected()) {
-      final result = await networkService.post(
-          '/bullet-public', data: connectionRequest.getRequestParams());
-      await _saveTokenToMemory(result.data['data']['token']);
+      await _getTokenFromServer();
     }
     webSocketService.connect(url: '${AppConfigs.socketBaseUrl}?token=${getTokenFromMemory()}&acceptUserMessage=true');
+  }
+
+  _getTokenFromServer() async {
+    final result = await networkService.post(
+        '/bullet-public', data: connectionRequest.getRequestParams());
+    await _saveTokenToMemory(result.data['data']['token']);
   }
 
   @override

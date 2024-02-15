@@ -1,18 +1,18 @@
 enum Side { buy, sell }
 
-class Stock {
+class BTC {
   double price;
   double size;
   Side side;
 
-  Stock(this.price, this.size, this.side);
+  BTC(this.price, this.size, this.side);
 }
 
 class MarketDomain {
 
-  List<Stock> stocks;
+  List<BTC> items;
   DateTime currentData;
 
-  MarketDomain(this.stocks, this.currentData);
+  MarketDomain(this.items, this.currentData);
 
 }

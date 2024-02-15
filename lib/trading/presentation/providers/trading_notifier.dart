@@ -4,6 +4,7 @@ import 'package:poloniex_app/trading/presentation/providers/trading_state.dart';
 import 'package:poloniex_app/trading/presentation/ui_mapper.dart';
 
 import '../../../shared/base/base_usecase.dart';
+import '../../domain/enums/market_type.dart';
 import '../../domain/market_domain.dart';
 
 class TradingNotifier extends StateNotifier<TradingState> {
@@ -14,33 +15,32 @@ class TradingNotifier extends StateNotifier<TradingState> {
 
   void updatePrice(double newPrice) {
     _inputPrice = newPrice;
-    state = state.copyWith(priceStatus: TradingUiMapper.mapPriceToArrowType(newPrice, state).priceStatus);
+    state = state.copyWith(rateStatus: TradingRateMapper.mapCurrentRateToRateStatus(newPrice, state).rateStatus);
   }
 
-  connectToStockMarket() {
-    final levelTopic = {
-      "id": 1545910660740,
-      "type": "subscribe",
-      "topic": "/contractMarket/level2Depth5:BTCUSDTPERP",
-      "response": true
-    };
-    final tickerTopic = {
-      "id": 1545910660740,
-      "type": "subscribe",
-      "topic": "/contractMarket/ticker:BTCUSDTPERP",
-      "response": true
-    };
+  connectToCryptoMarket() {
+    final levelTopic = createSubscriptionTopic(BTCTopicType.level2Depth5);
+    final tickerTopic = createSubscriptionTopic(BTCTopicType.ticker);
       marketUseCase.execute([
         levelTopic,
         tickerTopic
       ]).listen((event) {
         if(event is MarketDomain) {
-          state = state.copyWith(stockItems: event.stocks);
+          state = state.copyWith(items: event.items);
         } else if(event is Ticker){
-          state = state.copyWith(price: event.price, priceStatus: TradingUiMapper.mapPriceToArrowType(_inputPrice, state).priceStatus);
+          state = state.copyWith(currentBTCRate: event.price, rateStatus: TradingRateMapper.mapCurrentRateToRateStatus(_inputPrice, state).rateStatus);
         }
       }).onError((ex) {
          state = state.copyWith(state: TradingConcreteState.failure);
       });
     }
+
+  Map<String, dynamic> createSubscriptionTopic(BTCTopicType type) {
+    return {
+      "id": 1545910660740,
+      "type": "subscribe",
+      "topic": type.link('BTCUSDTPERP'),
+      "response": true,
+    };
+  }
 }

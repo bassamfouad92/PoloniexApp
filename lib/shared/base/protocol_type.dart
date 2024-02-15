@@ -1,0 +1,4 @@
+enum ProtocolType {
+  http,
+  websocket
+}

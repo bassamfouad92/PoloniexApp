@@ -21,7 +21,7 @@ class ResponseMapper {
 
 class DomainMapper {
   static MarketDomain mapToMarketDomain(OrderBook orderBook) {
-    final stockList = orderBook.bids.map((bid) => Stock(bid[0], bid[1], Side.buy)).toList();
-    return MarketDomain(stockList, DateTime.fromMillisecondsSinceEpoch(orderBook.timestamp));
+    final availableBTCs = orderBook.bids.map((bid) => BTC(bid[0], bid[1], Side.buy)).toList();
+    return MarketDomain(availableBTCs, DateTime.fromMillisecondsSinceEpoch(orderBook.timestamp));
   }
 }

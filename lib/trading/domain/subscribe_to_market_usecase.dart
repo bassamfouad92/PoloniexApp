@@ -7,11 +7,11 @@ import 'package:poloniex_app/trading/domain/trading_repository.dart';
 
 import '../../shared/base/base_response.dart';
 
-class SubscribeToStockMarketUseCase extends UseCase<dynamic, List<Map<String, dynamic>>> {
+class SubscribeToMarketUseCase extends UseCase<dynamic, List<Map<String, dynamic>>> {
 
   final TradingRepository tradingRepository;
 
-  SubscribeToStockMarketUseCase(this.tradingRepository);
+  SubscribeToMarketUseCase(this.tradingRepository);
 
   @override
   Stream<dynamic> execute(List<Map<String, dynamic>> params) async* {

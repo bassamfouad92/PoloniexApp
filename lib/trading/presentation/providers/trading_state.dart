@@ -7,46 +7,46 @@ enum TradingConcreteState {
   failure,
 }
 
-enum ArrowType {
-  red,
-  green
+enum RateStatus {
+  low,
+  high
 }
 
 class TradingState {
 
-  final List<Stock> stockItems;
-  final double stockPrice;
+  final List<BTC> availableBTCs;
+  final double currentBTCRate;
   final TradingConcreteState state;
-  final ArrowType priceStatus;
+  final RateStatus rateStatus;
 
   const TradingState({
-    this.stockItems = const [],
-    this.stockPrice = 0.0,
+    this.availableBTCs = const [],
+    this.currentBTCRate = 0.0,
     this.state = TradingConcreteState.initial,
-    this.priceStatus = ArrowType.green,
+    this.rateStatus = RateStatus.high,
   });
 
 
   const TradingState.loading({
-    this.stockItems = const [],
-    this.stockPrice = 0.0,
+    this.availableBTCs = const [],
+    this.currentBTCRate = 0.0,
     this.state = TradingConcreteState.loading,
-    this.priceStatus = ArrowType.green,
+    this.rateStatus = RateStatus.high,
   });
 
   TradingState copyWith({
-    List<Stock>? stockItems,
-    double? price,
+    List<BTC>? items,
+    double? currentBTCRate,
     TradingConcreteState? state,
     String? message,
     bool? isLoading,
-    ArrowType? priceStatus,
+    RateStatus? rateStatus,
   }) {
     return TradingState(
-      stockItems: stockItems ?? this.stockItems,
-      stockPrice: price ?? stockPrice,
+      availableBTCs: items ?? availableBTCs,
+      currentBTCRate: currentBTCRate ?? this.currentBTCRate,
       state: state ?? this.state,
-      priceStatus: priceStatus ?? this.priceStatus
+      rateStatus: rateStatus ?? this.rateStatus
     );
   }
 }
